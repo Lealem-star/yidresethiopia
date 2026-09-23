@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { ArrowLeft, MessageCircle, Phone } from 'lucide-react'
 import { listFeedback } from '@/lib/feedback-store'
+import { FeedbackForm } from '@/components/feedback-form'
 
 export const dynamic = 'force-dynamic'
 
@@ -41,6 +42,7 @@ export default async function FeedbackPage() {
               <MessageCircle className="size-4 text-[#8b2d2d]" /> @thebaseoftheworld
             </a>
           </div>
+          <FeedbackForm />
         </section>
 
         <section className="mt-8">

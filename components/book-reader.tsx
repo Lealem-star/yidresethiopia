@@ -4,7 +4,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import type { PDFDocumentProxy } from 'pdfjs-dist'
 import { BookOpen, ChevronLeft, ChevronRight, Expand, Info, LockKeyhole, Menu, MessageSquare, Minus, Plus, Search, Settings2, ShieldCheck, Shrink, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { FeedbackModal } from '@/components/feedback-modal'
+import Link from 'next/link'
 
 const chapters = [
   { number: '01', title: 'ይድረስ ለኢትዮጵያ ከተስፈኛው ወጣት', page: 8, end: 9 },
@@ -43,7 +43,6 @@ export function BookReader() {
   const [cropMargins, setCropMargins] = useState(true)
   const [showContents, setShowContents] = useState(true)
   const [showAbout, setShowAbout] = useState(false)
-  const [showFeedback, setShowFeedback] = useState(false)
   const [showSearch, setShowSearch] = useState(false)
   const [showSettings, setShowSettings] = useState(false)
   const [query, setQuery] = useState('')
@@ -179,7 +178,6 @@ export function BookReader() {
         setShowSearch(false)
         setShowSettings(false)
         setShowAbout(false)
-        setShowFeedback(false)
         return
       }
       if (isTypingTarget(event.target)) return
@@ -188,7 +186,6 @@ export function BookReader() {
         setShowSearch(true)
         setShowSettings(false)
         setShowAbout(false)
-        setShowFeedback(false)
         return
       }
       if ((event.ctrlKey || event.metaKey) && ['c', 'x', 's', 'p', 'u'].includes(event.key.toLowerCase())) {
@@ -261,10 +258,10 @@ export function BookReader() {
         </div>
         <div className="hidden items-center gap-2 text-sm text-[#777169] md:flex"><ShieldCheck className="size-4 text-[#8b2d2d]" /> የተጠበቀ ንባብ</div>
         <div className="flex items-center gap-2">
-          <Button variant="outline" size="sm" className="gap-2 bg-transparent" onClick={() => { setShowFeedback(true); setShowAbout(false); setShowSearch(false); setShowSettings(false) }}>
-            <MessageSquare /> አስተያየት
-          </Button>
-          <Button variant="outline" size="sm" className="gap-2 bg-transparent" onClick={() => { setShowAbout(true); setShowFeedback(false); setShowSearch(false); setShowSettings(false) }}>
+          <Link href="/feedback" className="inline-flex h-7 items-center gap-2 rounded-lg border border-border px-2.5 text-[0.8rem] font-medium hover:bg-muted">
+            <MessageSquare className="size-3.5" /> አስተያየት
+          </Link>
+          <Button variant="outline" size="sm" className="gap-2 bg-transparent" onClick={() => { setShowAbout(true); setShowSearch(false); setShowSettings(false) }}>
             <Info /> ስለ መጽሐፉ
           </Button>
         </div>
@@ -426,12 +423,11 @@ export function BookReader() {
               </div>
               <Button variant="ghost" size="icon" aria-label="Close about" onClick={() => setShowAbout(false)}><X /></Button>
             </div>
-            <p className="mt-4 text-sm leading-6 text-[#5f5850]">የኔ ድርሻ የአማርኛ መጽሐፍ ዲጂታል ንባብ። አስራ ሦስት ምዕራፎች ያሉት ይህ እትም በማያ ገጽ ለማንበብ ብቻ የተዘጋጀ ነው።</p>
+            <p className="mt-4 text-sm leading-6 text-[#5f5850]">የይድረስ ለኢትዮጵያ ከተስፈኛው ወጣት የአማርኛ መጽሐፍ ዲጂታል ንባብ። አስራ ሦስት ምዕራፎች ያሉት ይህ እትም በመረብ ገጽ ለማንበብ ብቻ የተዘጋጀ ነው።</p>
             <p className="mt-3 text-xs leading-5 text-[#8c867e]">{totalPages} ገጾች · የተጠበቀ ንባብ</p>
           </div>
         </div>
       )}
-      <FeedbackModal open={showFeedback} onClose={() => setShowFeedback(false)} />
     </main>
   )
 }
