@@ -8,7 +8,7 @@ const nextConfig = {
   },
   serverExternalPackages: ['pdfjs-dist'],
   async rewrites() {
-    return [{ source: '/favicon.ico', destination: '/icon.svg' }]
+    return [{ source: '/favicon.ico', destination: '/yidres_leethiopia_book_cover.png' }]
   },
 }
 

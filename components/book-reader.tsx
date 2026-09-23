@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react'
 import type { PDFDocumentProxy } from 'pdfjs-dist'
-import { BookOpen, ChevronLeft, ChevronRight, Expand, Info, LockKeyhole, Menu, MessageSquare, Minus, Plus, Search, Settings2, ShieldCheck, Shrink, X } from 'lucide-react'
+import { ChevronLeft, ChevronRight, Expand, Info, LockKeyhole, Menu, MessageSquare, Minus, Plus, Search, Settings2, ShieldCheck, Shrink, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 
@@ -249,7 +249,7 @@ export function BookReader() {
         <div className="flex items-center gap-3">
           <Button variant="ghost" size="icon" aria-label="Open table of contents" onClick={() => setShowContents((value) => !value)}><Menu /></Button>
           <div className="flex items-center gap-2.5">
-            <div className="grid size-9 place-items-center rounded-lg bg-[#8b2d2d] text-[#f8e9c4]"><BookOpen /></div>
+            <img src="/yidres_leethiopia_book_cover.png" alt="ይድረስ ለኢትዮጵያ" className="size-9 rounded-lg object-cover" />
             <div>
               <p className="font-serif text-lg font-semibold leading-none">ተስፈኛ ወጣት</p>
               <p className="mt-1 text-[10px] uppercase tracking-[0.22em] text-[#8c867e]">Digital library</p>
